@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StyleProp, ViewStyle, GestureResponderEvent } from 'react-native';
+import { Platform, Pressable, StyleProp, ViewStyle, GestureResponderEvent } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 
@@ -14,9 +14,7 @@ type Props = {
   disabled?: boolean;
 };
 
-const AnimatedPressable = Animated.createAnimatedComponent(
-  require('react-native').Pressable
-);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 function triggerHaptic() {
   if (Platform.OS === 'web') return;
