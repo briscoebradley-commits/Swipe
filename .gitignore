@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Claude local settings (keep launch.json, ignore personal/local settings)
+.claude/settings.local.json
