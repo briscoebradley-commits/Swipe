@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Colors, Fonts } from '../utils/theme';
+
+// The official Swipe mark (cleaned to a transparent, tintable PNG).
+const LOGO = require('../../assets/swipe-logo.png');
 
 type Props = {
   size?: number;
@@ -13,31 +15,17 @@ type Props = {
 };
 
 /**
- * The official Swipe brand mark — two interlocking rounded hooks forming an "S".
- * Vector-based so it stays crisp at every size and can be recolored (black on
- * light surfaces, white on dark surfaces / cards).
+ * The official Swipe brand mark, rendered from the source artwork and tinted so
+ * it appears white on dark surfaces and adapts to card colors. `size` controls
+ * the mark's height.
  */
 export default function SwipeLogo({ size = 40, color = Colors.white, wordmark, wordmarkColor }: Props) {
   const mark = (
-    <Svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      {/* Two interlocking hooks that overlap into an "S" */}
-      {/* Top hook: opens toward lower-right, terminal at upper-right */}
-      <Path
-        d="M 48 56 A 18 22 0 1 1 66 34"
-        stroke={color}
-        strokeWidth={10.5}
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Bottom hook: opens toward upper-left, terminal at lower-left */}
-      <Path
-        d="M 52 44 A 18 22 0 1 1 34 66"
-        stroke={color}
-        strokeWidth={10.5}
-        strokeLinecap="round"
-        fill="none"
-      />
-    </Svg>
+    <Image
+      source={LOGO}
+      resizeMode="contain"
+      style={{ width: size, height: size, tintColor: color }}
+    />
   );
 
   if (!wordmark) return mark;
@@ -45,7 +33,7 @@ export default function SwipeLogo({ size = 40, color = Colors.white, wordmark, w
   return (
     <View style={styles.row}>
       {mark}
-      <Text style={[styles.wordmark, { color: wordmarkColor ?? color, fontSize: size * 0.62 }]}>
+      <Text style={[styles.wordmark, { color: wordmarkColor ?? color, fontSize: size * 0.6 }]}>
         swipe
       </Text>
     </View>
@@ -56,7 +44,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 5,
   },
   wordmark: {
     fontWeight: Fonts.semibold,
