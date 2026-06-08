@@ -20,20 +20,18 @@ type Props = {
 export default function SwipeLogo({ size = 40, color = Colors.white, wordmark, wordmarkColor }: Props) {
   const mark = (
     <Svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      {/* Upper hook — C opening toward lower-right */}
+      {/* Single continuous "S" stroke */}
       <Path
-        d="M 43 59 A 19 19 0 1 1 62 40"
+        d="M 68 30
+           C 60 22, 45 21, 37 28
+           C 29 35, 30 45, 41 49
+           C 48 51, 53 49, 60 52
+           C 71 56, 71 66, 63 73
+           C 55 80, 40 79, 32 72"
         stroke={color}
-        strokeWidth={11}
+        strokeWidth={12.5}
         strokeLinecap="round"
-        fill="none"
-      />
-      {/* Lower hook — C opening toward upper-left */}
-      <Path
-        d="M 57 41 A 19 19 0 1 1 38 60"
-        stroke={color}
-        strokeWidth={11}
-        strokeLinecap="round"
+        strokeLinejoin="round"
         fill="none"
       />
     </Svg>
